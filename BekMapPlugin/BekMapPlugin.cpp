@@ -32,8 +32,11 @@ BOOL CBekMapPluginApp::InitInstance()
 	{
 		// TODO:  在此添加您自己的模块初始化代码。
 
+		//设置中文环境
+		setlocale(LC_ALL, ".936");
+
 		//从注册表读取程序路径
-		wstring wstrCurrentPath = _T("");
+		m_wstrCurrentPath = _T("");
 		wstring keyPath = _T("SOFTWARE\\Bekzoyo\\BekMapPlugin");
 		wstring keyStr = _T("PATH");
 		DWORD dwLen = 0;
@@ -43,26 +46,28 @@ BOOL CBekMapPluginApp::InitInstance()
 			TCHAR* szStr = new TCHAR[dwLen];
 			if (CRegOperation::RegReadString(HKEY_LOCAL_MACHINE, keyPath.c_str(), keyStr.c_str(), szStr, &dwLen, _T("123")))
 			{
-				wstrCurrentPath = szStr;
+				m_wstrCurrentPath = szStr;
 			}
 			delete[]szStr;
 		}
-		if (!CWinUtils::FileExists(wstrCurrentPath))
+		if (!CWinUtils::FileExists(m_wstrCurrentPath))
 		{
 			AfxMessageBox(_T("地图控件初始化失败!"));
 			return FALSE;
 		}
 
 		//目录初始化
-		wstring wstrLogPath = wstrCurrentPath + _T("\\log");
+		wstring wstrLogPath = m_wstrCurrentPath + _T("\\log");
 		if (!CWinUtils::FileExists(wstrLogPath))
 		{
 			CWinUtils::CreateDirectorys(wstrLogPath);
 		}
 
 		//日志模块初始化
-		wstring wsLogPath = wstrCurrentPath + _T("\\conf\\BekMapPlugin_logconf.ini");
-		LogBase_init(wsLogPath.c_str());
+		wstring wsLogConf = m_wstrCurrentPath + _T("\\conf\\BekMapPlugin_logconf.ini");
+		wstring wsLogPath = _T("\"") + m_wstrCurrentPath + _T("\\log\\BekMapPlugin.log\"");
+		WritePrivateProfileString(_T("GLOBAL"), _T("log_output_filepath"), wsLogPath.c_str(), wsLogConf.c_str());	//设置日志文件路径
+		LogBase_init(wsLogConf.c_str());
 	}
 
 	return bInit;

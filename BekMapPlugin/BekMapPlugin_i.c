@@ -6,10 +6,10 @@
 
 
  /* File created by MIDL compiler version 8.00.0603 */
-/* at Mon Mar 05 09:14:23 2018
+/* at Mon Mar 05 10:36:00 2018
  */
 /* Compiler settings for BekMapPlugin.idl:
-    Oicf, W1, Zp8, env=Win64 (32b run), target_arch=AMD64 8.00.0603 
+    Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 8.00.0603 
     protocol : dce , ms_ext, c_ext, robust
     error checks: allocation ref bounds_check enum stub_data 
     VC __declspec() decoration level: 

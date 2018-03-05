@@ -8,6 +8,8 @@
 
 #define MODULE_NAME	L"BekMapPluginCtrl"
 
+CBekMapPluginApp g_bekMapPluginApp;
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
