@@ -18,6 +18,9 @@ class CBekMapPluginApp : public COleControlModule
 public:
 	BOOL InitInstance();
 	int ExitInstance();
+
+public:
+	wstring m_wstrCurrentPath;
 };
 
 extern const GUID CDECL _tlid;
