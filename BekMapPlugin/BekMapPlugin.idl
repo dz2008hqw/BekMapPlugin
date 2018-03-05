@@ -1,0 +1,49 @@
+// BekMapPlugin.idl : ActiveX 控件项目的类型库源。
+
+// 此文件将由 MIDL 编译器工具处理以
+// 产生类型库(BekMapPlugin.tlb)，该类型库将成为
+// BekMapPlugin.ocx.
+
+#include <olectl.h>
+#include <idispids.h>
+
+[ uuid(F01C9F8D-FD97-4E32-A1E4-F925481D83BF), version(1.0),
+  control ]
+library BekMapPluginLib
+{
+	importlib(STDOLE_TLB);
+
+	//  CBekMapPluginCtrl 的主调度接口
+	[ 
+		uuid(45D6C6E4-52A0-4FA3-81FB-55A96FB8041A)	
+	]
+	dispinterface _DBekMapPlugin
+	{
+		properties:
+		methods:
+	};
+
+	//  CBekMapPluginCtrl 的事件调度接口
+
+	[ 
+		uuid(BD60276B-7666-4C3B-876D-509E28DE8E73)	
+	]
+	dispinterface _DBekMapPluginEvents
+	{
+		properties:
+			//  事件接口没有任何属性
+
+		methods:
+	};
+
+	//  CBekMapPluginCtrl 的类信息
+	[
+		uuid(ABFF8B05-DDA5-467F-865A-95F00A326831)
+	]
+	coclass BekMapPlugin
+	{
+		[default] dispinterface _DBekMapPlugin;
+		[default, source] dispinterface _DBekMapPluginEvents;
+	};
+
+};
